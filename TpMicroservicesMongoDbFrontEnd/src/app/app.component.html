@@ -1,0 +1,41 @@
+<!-- Nav menu with search -->
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark pmd-navbar pmd-z-depth fixed-top">
+  <button class="navbar-toggler pmd-navbar-toggle" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Catalogue</a>
+  <div class="collapse navbar-collapse pmd-navbar-sidebar" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer;">Home</a>
+      </li>
+      <!-- Admin-->
+       <li class="nav-item dropdown" *ngIf="isAuthenticated()">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a *ngIf="isAdmin()" class="dropdown-item" href="adminCategories">Gestion des Catégories</a>
+          <a class="dropdown-item" href="adminProducts">Gestion des produits</a>
+          <a *ngIf="isAdmin()" class="dropdown-item" href="adminUsers">Gestion des utilisateurs</a>
+        </div>
+      </li>
+      <li class="nav-item" *ngIf="!isAuthenticated()">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthenticated()">
+          <a class="nav-link" (click)="onLogout()" style="cursor: pointer;">Logout</a>
+      </li>
+    </ul>
+  </div>
+  </nav>
+
+<div class="row" style="padding-top: 100px">
+  <div class="col-md-2">
+    <app-categories></app-categories>
+  </div>
+  <div class="col-md-9 text-center">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

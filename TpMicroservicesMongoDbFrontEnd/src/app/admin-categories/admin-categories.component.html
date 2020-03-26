@@ -1,0 +1,48 @@
+<div class="card" *ngIf="catagories">
+    <div class="card-body">
+      <h5 class="card-title">Categories</h5>
+      <!--<button class="btn btn-outline-primary" (click)="onNewCat()">
+        New Category
+      </button>-->
+      <div>
+        <form #f="ngForm" (ngSubmit)="onSaveCat(f.value)" class="my-4" *ngIf="mode!='edit'">
+          <div class="input-group">
+            <input type="text" ngModel class="form-control" placeholder="new category" name="name" id="name">
+            <span class="input-group-btn">
+                <button class="btn btn-outline-success" type="submit">Save</button>
+            </span>
+          </div>
+        </form>
+        <form #f="ngForm" (ngSubmit)="editCat(f.value)" class="my-4" *ngIf="mode=='edit'">
+            <div class="input-group">
+              <input type="text" class="form-control" ngModel name="name" id="name" [value]="toEdit.name">
+              <span class="input-group-btn">
+                  <button class="btn btn-outline-success" type="submit">Edit</button>
+              </span>
+            </div>
+          </form>
+      </div>
+      <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Delete</th>
+            <th>Edit</th>
+          </tr>
+        <tr *ngFor="let c of catagories._embedded.categories"
+          style="cursor: pointer;">
+          <td>{{c.name}}</td>
+          <td>
+            <button class="btn btn-outline-danger" (click)="onDelete(c)">
+              <span class="glyphicon glyphicon-remove-circle">X</span>
+            </button>
+          </td>
+          <td>
+              <button class="btn btn-outline-warning" (click)="onEdit(c)">
+                <span class="glyphicon glyphicon-remove-circle">*</span>
+              </button>
+            </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
