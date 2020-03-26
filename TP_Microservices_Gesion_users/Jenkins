@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+      stage('Build: Users Microservices') {
+         steps {
+            dir ('TP_Microservices_Gesion_users'){
+                bat 'mvn -X clean package'
+            } 
+          }
+        }      
+    }
+}
