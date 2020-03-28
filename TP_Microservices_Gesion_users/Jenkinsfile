@@ -22,7 +22,6 @@ pipeline {
                 }
               }
               stage('Docker Build') {       
-                agent any
                 dir ('TpMicroservicesMongoDbFrontEnd'){
                   bat 'docker build -t dockrimage/user_microservice:latest .'
                 }
