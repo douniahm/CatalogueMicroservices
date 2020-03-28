@@ -21,11 +21,13 @@ pipeline {
                   echo 'test'
                 }
               }
-              stage('Docker Build') {       
-                dir ('TpMicroservicesMongoDbFrontEnd'){
-                  bat 'docker build -t dockrimage/user_microservice:latest .'
+              stage('Docker Build') {   
+                  steps{    
+                    dir ('TpMicroservicesMongoDbFrontEnd'){
+                      bat 'docker build -t dockrimage/user_microservice:latest .'
+                    }
+                  }
                 }
-            }
             }
           }
         }
