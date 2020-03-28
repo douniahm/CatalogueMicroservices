@@ -21,6 +21,12 @@ pipeline {
                   echo 'test'
                 }
               }
+              stage('Docker Build') {       
+                agent any
+                steps {
+                  bat 'docker build -t dockrimage/user_microservice:latest .'
+                }
+            }
             }
           }
         }
