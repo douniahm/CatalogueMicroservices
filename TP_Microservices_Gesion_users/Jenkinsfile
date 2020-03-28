@@ -24,7 +24,7 @@ pipeline {
               stage('Docker Build') {   
                   steps{    
                     dir ('TP_Microservices_Gesion_users'){
-                      bat 'docker build -t dockrimage/User_Microservice:latest .'
+                      bat 'docker build -t user_microservice:latest .'
                     }
                   }
                 }
