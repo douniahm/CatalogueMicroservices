@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+      stages {
+          stage('Check for changes') {
+            when {
+              anyOf {
+                changeset "**/TpMicroservicesMongoDbFrontEnd/**"
+                expression {
+                  return currentBuild.number == 1
+                }
+              }
+            }
+            stages{
+              stage('build'){
+                steps{
+                  echo 'Build'
+                }
+              }
+              stage('test'){
+                steps{
+                  echo 'test'
+                }
+              }
+            }
+          }
+        }
+}
