@@ -21,6 +21,13 @@ pipeline {
                   echo 'test'
                 }
               }
+              stage('Docker Build') {
+                  steps{
+                    dir ('TpMicroservicesMongoDbFrontEnd'){
+                      bat 'docker build -t angularclient .'
+                    }
+                  }
+                }
             }
           }
         }
