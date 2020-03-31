@@ -1,7 +1,10 @@
-FROM node:12.16.1-alpine as node
-#create a directory in container
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
+# stage 1
+FROM node:latest as node
+WORKDIR /app
 COPY . .
-RUN npm run build
+RUN npm install
+RUN npm run build --prod
+
+# stage 2
+FROM nginx:alpine
+COPY --from=node /app/dist/TpMicroservicesMongoDbFrontEnd /usr/share/nginx/html
